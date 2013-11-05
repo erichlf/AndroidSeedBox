@@ -451,7 +451,7 @@ t_chmod 600 /opt/etc/samba/smb.conf
 t_chmod 644 /opt/etc/openssh/ssh_conf
 t_chmod 644 /opt/etc/openssh/sshd_conf
 
-echo "== Starting services optware and services =="
+echo "== Starting optware and services =="
 adb shell sh /opt/home/root/sysinit
 echo "If everything worked, you should be able to use ssh with root as the user
 and the password you provided. You should also have samba, transmission, and
