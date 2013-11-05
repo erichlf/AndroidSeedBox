@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ -f /var/run/transmission-daemon.pid ] ; then
+  kill `cat /var/run/transmission-daemon.pid`
+else
+  killall transmission-daemon 2>/dev/null
+fi
+
+rm -f /var/run/transmission-daemon.pid
+
+if [ -e /opt/bin/transmission-daemon ] ; then
+  /opt/bin/transmission-daemon
+fi
