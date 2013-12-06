@@ -355,12 +355,12 @@ adb shell su -c "echo root:x:0:root >/opt/etc/group"
 adb shell su -c "echo shell:x:2000:shell >>/opt/etc/group"
 adb shell su -c "echo root:!:: > /etc/gshadow"
 t_cd_ln . -s /opt/etc/group /etc/group
-t_remount_ro /system
 
 echo "== Configuring path and shells =="
 adb shell su -c "echo /system/bin/bash > /etc/shells"
 adb shell su -c "echo PATH=/usr/bin:/usr/sbin:/bin:/sbin:/system/sbin:/system/bin:/system/xbin:/system/xbin/bb:/data/local/bin > /etc/profile"
 adb shell su -c "echo export PATH >> /etc/profile"
+t_remount_ro /system
 
 echo "== Now is the time to create a password for root =="
 echo "Press Enter to continue"
