@@ -346,8 +346,8 @@ echo "== Configuring /etc/mtab =="
 t_cd_ln . -s /proc/mounts /etc/mtab
 
 echo "== Configuring users =="
-adb shell su -c "echo root:x:0:0:root:/opt/home/root:/bin/bash >/opt/etc/passwd"
-adb shell su -c "echo shell:x:2000:2000:shell:/opt/home/user:/bin/bash >>/opt/etc/passwd"
+adb shell su -c "echo root:x:0:0:root:/opt/home/root:/system/bin/bash >/opt/etc/passwd"
+adb shell su -c "echo shell:x:2000:2000:shell:/opt/home/user:/system/bin/bash >>/opt/etc/passwd"
 adb shell su -c "echo root::14531:0:99999:7::: > /etc/shadow"
 t_cd_ln . -s /opt/etc/passwd /etc/passwd
 
@@ -412,6 +412,13 @@ read
 #install our extras
 ipkg_install man
 ipkg_install bash
+
+#this is required to get ssh working correctly
+#or I could point passwd accounts to /data/opt/bin/bash
+t_remount_rw /system
+adb shell cp /data/opt/bin/bash /system/bin/
+t_remount_ro /system
+
 ipkg_install vim
 ipkg_install cron
 ipkg_install openssh
