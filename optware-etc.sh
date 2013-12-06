@@ -446,7 +446,7 @@ adb shell su -c "chown root.root /opt/home/root/.profile"
 t_chmod 600 /opt/home/root/.profile
 adb shell su -c "chown root.root /opt/home/root/.bashrc"
 t_chmod 700 /opt/home/root/.bashrc
-t_chmod 755 /opt/etc/S90transmission-daemon
+t_chmod 755 /opt/etc/init.d/S90transmission-daemon
 t_chmod 600 /opt/etc/samba/smb.conf
 t_chmod 644 /opt/etc/openssh/ssh_conf
 t_chmod 644 /opt/etc/openssh/sshd_conf
