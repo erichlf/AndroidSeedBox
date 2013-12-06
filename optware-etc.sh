@@ -419,7 +419,7 @@ ipkg_install samba
 ipkg_install transmission
 ipkg_install python27
 ipkg_install py27-setuptools
-adb shell PATH=/opt/bin:/bin /opt/local/bin/easy-install-2.7 install pip
+adb shell PATH=/opt/bin:/bin /opt/local/bin/easy-install-2.7 pip
 pip_install distribute
 pip_install pyyaml
 pip_install flexget
