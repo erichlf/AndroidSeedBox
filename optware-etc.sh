@@ -301,7 +301,7 @@ rm -rf opt
 tar -xOzf $busybox_fname ./data.tar.gz | tar -xzf -
 adb push opt $tmp_dir
 install_bin busybox
-adb push busybox /opt/bin/busybox
+adb push files/busybox /opt/bin/busybox
 
 echo "== Initializing bootstrap /bin =="
 # We need sane shell as /bin/sh
@@ -434,14 +434,14 @@ pip_install flexget
 pip_install transmissionrpc
 
 echo "== Pushing some config files =="
-adb push .bashrc /opt/home/root/.bashrc
-adb push .profile /opt/home/root/.profile
-adb push start.sh /opt/home/root/start.sh
-adb push start.sh /opt/home/root/sysinit
-adb push ssh_config /opt/etc/openssh/ssh_config
-adb push sshd_config /opt/etc/openssh/sshd_config
-adb push smb.conf /opt/etc/samba/smb.conf
-adb push S90transmission-daemon /opt/etc/init.d/S90transmission-daemon
+adb push files/.bashrc /opt/home/root/.bashrc
+adb push files/.profile /opt/home/root/.profile
+adb push files/start.sh /opt/home/root/start.sh
+adb push files/start.sh /opt/home/root/sysinit
+adb push files/ssh_config /opt/etc/openssh/ssh_config
+adb push files/sshd_config /opt/etc/openssh/sshd_config
+adb push files/smb.conf /opt/etc/samba/smb.conf
+adb push files/S90transmission-daemon /opt/etc/init.d/S90transmission-daemon
 
 adb shell PATH=/opt/bin:/bin /opt/bin/mkdir /opt/home/root/.ssh
 adb shell su -c "chown root.root /opt/home/root/.ssh"
