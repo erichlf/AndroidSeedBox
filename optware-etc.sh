@@ -440,6 +440,7 @@ adb push files/start.sh /opt/home/root/start.sh
 adb push files/start.sh /opt/home/root/sysinit
 adb push files/ssh_config /opt/etc/openssh/ssh_config
 adb push files/sshd_config /opt/etc/openssh/sshd_config
+adb push files/banner /opt/etc/openssh/banner
 adb push files/smb.conf /opt/etc/samba/smb.conf
 adb push files/S90transmission-daemon /opt/etc/init.d/S90transmission-daemon
 
