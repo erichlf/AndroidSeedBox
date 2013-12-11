@@ -302,6 +302,7 @@ rm -rf opt
 tar -xOzf $busybox_fname ./data.tar.gz | tar -xzf -
 adb push opt $tmp_dir
 install_bin busybox
+#the busybox in NSLU2 is missing a lot of necessary commands, so push ours.
 adb push files/busybox /opt/bin/busybox
 
 echo "== Initializing bootstrap /bin =="
