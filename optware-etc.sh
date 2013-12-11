@@ -14,6 +14,7 @@
 #
 # Edited by Erich L Foster to add transmission, openssh, samba, man, bash, vim,
 # python, flexget, etc.
+# v0.9 11/12/2013
 
 #set -x
 
