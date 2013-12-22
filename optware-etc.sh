@@ -323,6 +323,7 @@ t_cd_ln /bin -s /opt/bin/busybox mv
 t_cd_ln /bin -s /opt/bin/busybox cat
 t_cd_ln /bin -s /opt/bin/busybox chown
 t_cd_ln /bin -s /opt/bin/busybox chmod
+t_cd_ln /bin -s /opt/bin/busybox pgrep
 
 echo "== Configuring package feed =="
 t_mkdir_p /opt/etc
