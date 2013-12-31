@@ -190,16 +190,14 @@ fetch_toolchain () {
     if [ ! -f $cs08q1_fname ]; then
         echo "You need CodeSourcery ARM-Linux toolchain release 2008q1: $cs08q1_fname"
         echo "if you have this file on your system already, press Ctrl-C now and copy"
-        echo "it into the current directory. Otherwise, press Enter to download it (65MB)."
-        read
+        read -p "it into the current directory. Otherwise, press [Enter] to download it (65MB)."
         wget $cs08q1_url
     fi
 }
 
 optware_uninstall () {
     echo "Make sure that your device is woken up and connected to the Internet"
-    echo "Press Enter to continue"
-    read
+    read -p "Press [Enter] to continue"
     t_remount_rw /
     adb shell su -c "rm -r $OPTWARE_DIR"
     adb shell su -c "rm /lib"
@@ -251,8 +249,7 @@ fetch_package $wget_fname
 fetch_package $busybox_fname
 
 echo "Make sure that your device is woken up and connected to the Internet"
-echo "Press Enter to continue"
-read
+read -p "Press [Enter] to continue"
 
 t_remount_rw /
 
@@ -367,8 +364,7 @@ adb shell su -c "echo export PATH >> /etc/profile"
 t_remount_ro /system
 
 echo "== Now is the time to create a password for root =="
-echo "Press Enter to continue"
-read
+read -p "Press [Enter] to continue"
 adb shell PATH=/opt/bin:/bin /opt/bin/busybox passwd
 
 echo "== Creating optware init script =="
@@ -396,8 +392,7 @@ t_remount_ro /
 
 echo "== Reinstalling bootstrap packages =="
 echo "Make sure that your device is woken up and connected to the Internet"
-echo "Press Enter to continue"
-read
+read -p "Press [Enter] to continue"
 #
 # Now that we have all dependencies to run ipkg bootstrapped on device,
 # we need to use ipkg to reinstall itself and all those dependencies,
@@ -410,8 +405,7 @@ ipkg_install wget
 ipkg_install busybox
 
 echo "== Installing extra packages =="
-echo "Press Enter to continue"
-read
+read -p "Press [Enter] to continue"
 #install our extras
 ipkg_install man
 ipkg_install bash
