@@ -14,7 +14,7 @@
 #
 # Edited by Erich L Foster to add transmission, openssh, samba, man, bash, vim,
 # python, flexget, etc.
-# v0.9 11/12/2013
+# v0.91 11/12/2013
 
 #set -x
 
@@ -197,7 +197,7 @@ fetch_toolchain () {
 
 optware_uninstall () {
     echo "Make sure that your device is woken up and connected to the Internet"
-    read -p "Press [Enter] to continue"
+    read -n 1 -p "Press [Enter] to continue"
     t_remount_rw /
     adb shell su -c "rm -r $OPTWARE_DIR"
     adb shell su -c "rm /lib"
@@ -249,7 +249,7 @@ fetch_package $wget_fname
 fetch_package $busybox_fname
 
 echo "Make sure that your device is woken up and connected to the Internet"
-read -p "Press [Enter] to continue"
+read -n 1 -p "Press [Enter] to continue"
 
 t_remount_rw /
 
@@ -364,7 +364,7 @@ adb shell su -c "echo export PATH >> /etc/profile"
 t_remount_ro /system
 
 echo "== Now is the time to create a password for root =="
-read -p "Press [Enter] to continue"
+read -n 1 -p "Press [Enter] to continue"
 adb shell PATH=/opt/bin:/bin /opt/bin/busybox passwd
 
 echo "== Creating optware init script =="
@@ -392,7 +392,7 @@ t_remount_ro /
 
 echo "== Reinstalling bootstrap packages =="
 echo "Make sure that your device is woken up and connected to the Internet"
-read -p "Press [Enter] to continue"
+read -n 1 -p "Press [Enter] to continue"
 #
 # Now that we have all dependencies to run ipkg bootstrapped on device,
 # we need to use ipkg to reinstall itself and all those dependencies,
@@ -405,7 +405,7 @@ ipkg_install wget
 ipkg_install busybox
 
 echo "== Installing extra packages =="
-read -p "Press [Enter] to continue"
+read -n 1 -p "Press [Enter] to continue"
 #install our extras
 ipkg_install man
 ipkg_install bash
@@ -417,18 +417,18 @@ adb shell cp /data/opt/bin/bash /system/bin/
 t_remount_ro /system
 
 ipkg_install vim
-ipkg_install cron
+#ipkg_install cron
 ipkg_install openssh
 ipkg_install rsync
 ipkg_install samba
-ipkg_install transmission
-ipkg_install python27
-ipkg_install py27-setuptools
-adb shell PATH=/opt/bin:/bin /opt/local/bin/easy-install-2.7 pip
-pip_install distribute
-pip_install pyyaml
-pip_install flexget
-pip_install transmissionrpc
+#ipkg_install transmission
+#ipkg_install python27
+#ipkg_install py27-setuptools
+#adb shell PATH=/opt/bin:/bin /opt/local/bin/easy-install-2.7 pip
+#pip_install distribute
+#pip_install pyyaml
+#pip_install flexget
+#pip_install transmissionrpc
 
 echo "== Pushing some config files =="
 adb push files/.bashrc /opt/home/root/.bashrc
@@ -439,7 +439,7 @@ adb push files/ssh_config /opt/etc/openssh/ssh_config
 adb push files/sshd_config /opt/etc/openssh/sshd_config
 adb push files/banner /opt/etc/openssh/banner
 adb push files/smb.conf /opt/etc/samba/smb.conf
-adb push files/S90transmission-daemon /opt/etc/init.d/S90transmission-daemon
+#adb push files/S90transmission-daemon /opt/etc/init.d/S90transmission-daemon
 
 adb shell PATH=/opt/bin:/bin /opt/bin/mkdir /opt/home/root/.ssh
 adb shell su -c "chown root.root /opt/home/root/.ssh"
@@ -452,7 +452,7 @@ adb shell su -c "chown root.root /opt/home/root/.profile"
 t_chmod 600 /opt/home/root/.profile
 adb shell su -c "chown root.root /opt/home/root/.bashrc"
 t_chmod 700 /opt/home/root/.bashrc
-t_chmod 755 /opt/etc/init.d/S90transmission-daemon
+#t_chmod 755 /opt/etc/init.d/S90transmission-daemon
 t_chmod 600 /opt/etc/samba/smb.conf
 t_chmod 644 /opt/etc/openssh/ssh_conf
 t_chmod 644 /opt/etc/openssh/sshd_conf
