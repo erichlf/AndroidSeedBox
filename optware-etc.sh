@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # NSLU2-Linux Optware setup script for Android
 # Copyright (c) 2012 Paul Sokolovsky <pfalcon@users.sourceforge.net>
@@ -197,7 +197,7 @@ fetch_toolchain () {
 
 optware_uninstall () {
     echo "Make sure that your device is woken up and connected to the Internet"
-    read -n 1 -p "Press [Enter] to continue"
+    read -p "Press [Enter] to continue"
     t_remount_rw /
     adb shell su -c "rm -r $OPTWARE_DIR"
     adb shell su -c "rm /lib"
@@ -249,7 +249,7 @@ fetch_package $wget_fname
 fetch_package $busybox_fname
 
 echo "Make sure that your device is woken up and connected to the Internet"
-read -n 1 -p "Press [Enter] to continue"
+read -p "Press [Enter] to continue"
 
 t_remount_rw /
 
@@ -364,7 +364,7 @@ adb shell su -c "echo export PATH >> /etc/profile"
 t_remount_ro /system
 
 echo "== Now is the time to create a password for root =="
-read -n 1 -p "Press [Enter] to continue"
+read -p "Press [Enter] to continue"
 adb shell PATH=/opt/bin:/bin /opt/bin/busybox passwd
 
 echo "== Creating optware init script =="
@@ -392,7 +392,7 @@ t_remount_ro /
 
 echo "== Reinstalling bootstrap packages =="
 echo "Make sure that your device is woken up and connected to the Internet"
-read -n 1 -p "Press [Enter] to continue"
+read -p "Press [Enter] to continue"
 #
 # Now that we have all dependencies to run ipkg bootstrapped on device,
 # we need to use ipkg to reinstall itself and all those dependencies,
@@ -405,7 +405,7 @@ ipkg_install wget
 ipkg_install busybox
 
 echo "== Installing extra packages =="
-read -n 1 -p "Press [Enter] to continue"
+read -p "Press [Enter] to continue"
 #install our extras
 ipkg_install man
 ipkg_install bash
