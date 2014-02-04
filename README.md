@@ -45,9 +45,9 @@ Use SManager to run `/opt/home/root/sysinit` at every restart (or run it using i
 
 ###Notes:
 * The script can be modified to change the various programs that I install. You could exchange transmission for rtorrent for example.
-* Transmission can be accessed from the minix through localhost:9091 or from some other machine using your ip-address and the port 9091. If that doesn't work you should edit the config file located at /opt/home/root/.config/transmission-daemon/settings.json
-    username: root
-    password: you provided this during install
+* Transmission can be accessed from the minix through `localhost:9091` or from some other machine using your ip-address and the port 9091. If that doesn't work you should edit the config file located at `/opt/home/root/.config/transmission-daemon/settings.json`
+    ```username: root
+    password: you provided this during install```
 * Without SManager nothing will start automatically. However, if you have a ROM which has init.d support you can move the scripts in `/opt/etc/init.d` to `/etc/init.d` I would suggest maybe linking the two instead of just moving the scripts or possibly adding a script to `/etc/init.d` which runs the items in `/opt/etc/init.d` The reason is because when installing things using ipkg the startup scripts will be placed in `/opt/etc/init.d` and not `/etc/init.d` However, it is extremely important that optware is started, and this is partly what sysinit accomplishes.
 * If you have init.d support you may have an issue with transmission-daemon executing before your USB is mounted. I solved this by creating a script which loops until the USB is mounted then executes transmission-daemon. This required me to call the script from within the startup script in init.d. Also, I created a symbolic link from `/etc/init.d` pointing to `/data/opt/etc/init.d` doing this adds any new optware daemons automatically to init.d.
 * To list available packages
@@ -84,4 +84,4 @@ Use SManager to run `/opt/home/root/sysinit` at every restart (or run it using i
 * v0.9 - Added /data/opt/local to PATH since this is where flexget resides.
 * v0.95 - Switched to bash instead of shell script.
 * v0.97 - Added a workaround to the password bug.
-Enjoy! 
+Enjoy!
