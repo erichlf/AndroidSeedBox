@@ -50,21 +50,21 @@ Sorry but all the binaries are built on ARM.
 
 ###Notes:
 
-    *The script can be modified to change the various programs that I install. You could exchange transmission for rtorrent for example.
-    *Transmission can be accessed from the minix through localhost:9091 or from some other machine using your ip-address and the port 9091. If that doesn't work you should edit the config file located at /opt/home/root/.config/transmission-daemon/settings.json
+    * The script can be modified to change the various programs that I install. You could exchange transmission for rtorrent for example.
+    * Transmission can be accessed from the minix through localhost:9091 or from some other machine using your ip-address and the port 9091. If that doesn't work you should edit the config file located at /opt/home/root/.config/transmission-daemon/settings.json
         `
             username: root
             password: you provided this during install
         `
-    *Without SManager nothing will start automatically. However, if you have a ROM which has init.d support you can move the scripts in /opt/etc/init.d to /etc/init.d I would suggest maybe linking the two instead of just moving the scripts or possibly adding a script to /etc/init.d which runs the items in /opt/etc/init.d The reason is because when installing things using ipkg the startup scripts will be placed in /opt/etc/init.d and not /etc/init.d However, it is extremely important that optware is started, and this is partly what sysinit accomplishes.
-    *If you have init.d support you may have an issue with transmission-daemon executing before your USB is mounted. I solved this by creating a script which loops until the USB is mounted then executes transmission-daemon. This required me to call the script from within the startup script in init.d. Also, I created a symbolic link from /etc/init.d pointing to /data/opt/etc/init.d doing this adds any new optware daemons automatically to init.d.
-    *To list available packages
+    * Without SManager nothing will start automatically. However, if you have a ROM which has init.d support you can move the scripts in /opt/etc/init.d to /etc/init.d I would suggest maybe linking the two instead of just moving the scripts or possibly adding a script to /etc/init.d which runs the items in /opt/etc/init.d The reason is because when installing things using ipkg the startup scripts will be placed in /opt/etc/init.d and not /etc/init.d However, it is extremely important that optware is started, and this is partly what sysinit accomplishes.
+    * If you have init.d support you may have an issue with transmission-daemon executing before your USB is mounted. I solved this by creating a script which loops until the USB is mounted then executes transmission-daemon. This required me to call the script from within the startup script in init.d. Also, I created a symbolic link from /etc/init.d pointing to /data/opt/etc/init.d doing this adds any new optware daemons automatically to init.d.
+    * To list available packages
         `ipkg list`
-    *To install a new package use the command
+    * To install a new package use the command
         `ipkg install <new package>`
-    *To remove a package use the command
+    * To remove a package use the command
         `ipkg remove <package to remove>`
-    *cron is weird and I couldn't get it to work like it should, but I got it to work
+    * cron is weird and I couldn't get it to work like it should, but I got it to work
         While on the Android device (ssh or terminal emulator)
         1. Create a .crond file with some schedule in it. Remember to leave a blank line at the end of the file.
         2. Tell cron about the .crond file
@@ -72,10 +72,10 @@ Sorry but all the binaries are built on ARM.
         3. Make sure cron sees the cron file
             `crontab -l`
         4. If you want to edit your cronfile use a text editor and edit the file directly and then tell cron about the file again.
-    *The samba script located at /opt/etc/init.d/S08samba needs to be edited to activate samba on startup. Just change line 4 from "samba_active = 0" to "samba_active = 1"
-    *Many things are installed in what seem like strange places, so use
+    * The samba script located at /opt/etc/init.d/S08samba needs to be edited to activate samba on startup. Just change line 4 from "samba_active = 0" to "samba_active = 1"
+    * Many things are installed in what seem like strange places, so use
         `which <binary you are looking for>`
-    *Feel free to help develop the code. I think what would be best is an update.zip or a CWM flashable zip. Right now I don't know how to do this, but once I get more time I will look into it. So, any help on this front is welcomed.
+    * Feel free to help develop the code. I think what would be best is an update.zip or a CWM flashable zip. Right now I don't know how to do this, but once I get more time I will look into it. So, any help on this front is welcomed.
 
 ###Change Log:
 * v0.1 - Initial version adapted from the standard NSLU2-Optware for Android bootstrap script.
