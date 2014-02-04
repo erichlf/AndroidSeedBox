@@ -14,7 +14,7 @@
 #
 # Edited by Erich L Foster to add transmission, openssh, samba, man, bash, vim,
 # python, flexget, etc.
-# v0.95 16/01/2014
+# v0.97 04/02/2014
 
 #set -x
 
@@ -223,6 +223,20 @@ pip_install () {
     adb shell PATH=/data/opt/bin:/bin /data/opt/local/bin/pip install $1
 }
 
+set_password () {
+    echo "Please enter your desired password."
+    read -s password1
+    echo "Please enter your password again."
+    read -s password2
+    if [ $password1 == $password2 ]
+    then
+        adb shell echo $password1 | su -c /data/opt/bin/busybox passwd root --stdin
+    else
+        echo "Passwords didn't match. Please try again."
+        set_password
+    fi
+}
+
 #
 # Main code
 #
@@ -363,8 +377,7 @@ adb shell su -c "echo PATH=/usr/bin:/usr/sbin:/bin:/sbin:/system/sbin:/system/bi
 adb shell su -c "echo export PATH >> /etc/profile"
 
 echo "== Now is the time to create a password for root =="
-read -p "Press [Enter] to continue"
-adb shell su -c /data/opt/bin/busybox passwd
+set_password
 
 echo "== Creating optware init script =="
 adb shell su -c "echo \#\!/system/bin/sh >/data/opt/optware-init.sh"
@@ -417,18 +430,18 @@ adb shell cp /data/opt/bin/bash /system/bin/
 t_remount_ro /system
 
 ipkg_install vim
-ipkg_install cron
+#ipkg_install cron
 ipkg_install openssh
 ipkg_install rsync
 ipkg_install samba
-ipkg_install transmission
-ipkg_install python27
-ipkg_install py27-setuptools
-adb shell PATH=/data/opt/bin:/bin /data/opt/local/bin/easy-install-2.7 pip
-pip_install distribute
-pip_install pyyaml
-pip_install flexget
-pip_install transmissionrpc
+#ipkg_install transmission
+#ipkg_install python27
+#ipkg_install py27-setuptools
+#adb shell PATH=/data/opt/bin:/bin /data/opt/local/bin/easy-install-2.7 pip
+#pip_install distribute
+#pip_install pyyaml
+#pip_install flexget
+#pip_install transmissionrpc
 
 echo "== Pushing some config files =="
 adb push files/.bashrc /data/opt/home/root/.bashrc
