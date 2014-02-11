@@ -1,7 +1,7 @@
 AndroidSeedBox
 ==============
 
-This script will install everything necessary to run Transmission and Flexget from your Android device.
+This script will install everything necessary to run Transmission and Flexget from your Android device. However, it is not limited to using just these two programs. The script will install Python, openssh, samba, bash, etc.
 For the forum discussion see [this discussion](http://minixforums.com/threads/how-to-linux-optware-ssh-samba-transmission-flexget.2825/#post-23301)
 
 The script is build on the original [NSLU2-optware for Android bootstrap
