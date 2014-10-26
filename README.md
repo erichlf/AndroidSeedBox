@@ -25,7 +25,7 @@ Sorry but all the binaries are built on ARM.
 1. Make a backup of your ROM!
 2. Download files (gitHub)
   You have two options here:
-  1. Download the zip [here](https://github.com/erichlf/androidseedbox/archive/master.zip) and unzip it.
+  1. Download the zip [here](https://github.com/erichlf/AndroidSeedBox/archive/master.zip) and unzip it.
   2. Clone the repo using git via `git clone git@github.com:erichlf/AndroidSeedBox.git`
 3. Make script executable
     `chmod +x optware-etc.sh`
